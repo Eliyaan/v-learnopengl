@@ -1,27 +1,23 @@
-import gg
 import sokol.sapp
 import sokol.gfx
 
 @[heap]
 struct App {
 mut:
-	ctx &gg.Context = unsafe { nil }
 	pass_action gfx.PassAction
 }
 
 fn main() {
-	mut app := &App {
-	}
-	app.ctx = gg.new_context(
+	mut app := &App{}
+	sapp.run(
 		width: 800
 		height: 600
 		user_data: app
-		init_fn: init
-		frame_fn: frame
-		event_fn: event
-		window_title: 'HelloWindow'
+		init_userdata_cb: init
+		frame_userdata_cb: frame
+		event_userdata_cb: event
+		window_title: c'HelloWindow'
 	)
-	app.ctx.run()
 }
 
 fn init(mut app App) {
@@ -34,10 +30,10 @@ fn init(mut app App) {
 	}
 }
 
-fn event(mut e gg.Event, mut app App) {
-	if e.typ == .key_down {
+fn event(mut e sapp.Event, mut app App) {
+	if e.type == .key_down {
 		if e.key_code == .escape {
-			app.ctx.quit()
+			sapp.request_quit()
 		}
 	}
 }
