@@ -31,7 +31,7 @@ fn main() {
 		frame_userdata_cb: frame
 		event_userdata_cb: event
 		high_dpi:          true
-		window_title:      c'HelloWindow'
+		window_title:      c'HelloTriangle-quad'
 	)
 }
 
